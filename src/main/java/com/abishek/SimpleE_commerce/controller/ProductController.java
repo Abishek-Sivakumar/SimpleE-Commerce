@@ -3,13 +3,12 @@ package com.abishek.SimpleE_commerce.controller;
 import com.abishek.SimpleE_commerce.model.Product;
 import com.abishek.SimpleE_commerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class ProductController {
 
@@ -24,6 +23,11 @@ public class ProductController {
     @GetMapping("/products")
     public List<Product> getAllProducts(){
         return service.getALlProducts();
+    }
+
+    @GetMapping("/product/{prodId}")
+    public Product getProduct(@PathVariable int prodId){
+        return service.getProduct(prodId);
     }
 
 
