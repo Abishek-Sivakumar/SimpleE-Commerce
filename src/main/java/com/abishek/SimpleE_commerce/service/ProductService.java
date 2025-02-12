@@ -19,7 +19,7 @@ public class ProductService {
     }
 
     public Product getProduct(int prodId){ //Optional<Product>
-        return productRepo.findById(prodId).orElse(new Product()); //Here set all the values inside new Product()
+        return productRepo.findById(prodId).orElse(null); //Here set all the values inside new Product()
     }
 
 }

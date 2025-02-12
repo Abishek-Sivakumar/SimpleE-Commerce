@@ -29,7 +29,7 @@ public class Product {
     private BigDecimal price;
     private String category;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy") //The MM should be in CAPITAL or else it will display wrongly
+    //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy") The MM should be in CAPITAL or else it will display wrongly
     private Date releaseDate;
     private boolean available;
     private int quantity;
