@@ -1,16 +1,14 @@
 package com.abishek.SimpleE_commerce.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
 
 
@@ -24,30 +22,56 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // TO Auto Increment the Primary Key
     private int id;
     private String name;
-    private String desc;
+    private String description;
     private String brand;
     private BigDecimal price;
     private String category;
 
     //@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy") The MM should be in CAPITAL or else it will display wrongly
     private Date releaseDate;
-    private boolean available;
-    private int quantity;
+    private boolean productAvailable;
+    private int stockQuantity;
+
+    private String imageName;
+    private String imageType;
+    @Lob // Large Object Data
+    private byte[] imageData;
 
     public Product (){
 
     }
 
-    public Product(int id, String name, String desc, String brand, BigDecimal price, String category, Date releaseDate, boolean available, int quantity) {
+    public Product(int id, String name, String description, String brand, BigDecimal price, String category, Date releaseDate, boolean productAvailable, int stockQuantity, String imageName, String imageType, byte[] imageData) {
         this.id = id;
         this.name = name;
-        this.desc = desc;
+        this.description = description;
         this.brand = brand;
         this.price = price;
         this.category = category;
         this.releaseDate = releaseDate;
-        this.available = available;
-        this.quantity = quantity;
+        this.productAvailable = productAvailable;
+        this.stockQuantity = stockQuantity;
+        this.imageName = imageName;
+        this.imageType = imageType;
+        this.imageData = imageData;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", brand='" + brand + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", productAvailable=" + productAvailable +
+                ", stockQuantity=" + stockQuantity +
+                ", imageName='" + imageName + '\'' +
+                ", imageType='" + imageType + '\'' +
+                ", imageData=" + Arrays.toString(imageData) +
+                '}';
     }
 
     public int getId() {
@@ -66,12 +90,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getBrand() {
@@ -106,34 +130,45 @@ public class Product {
         this.releaseDate = releaseDate;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public boolean isProductAvailable() {
+        return productAvailable;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setProductAvailable(boolean productAvailable) {
+        this.productAvailable = productAvailable;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", desc='" + desc + '\'' +
-                ", brand='" + brand + '\'' +
-                ", price=" + price +
-                ", category='" + category + '\'' +
-                ", releaseDate=" + releaseDate +
-                ", available=" + available +
-                ", quantity=" + quantity +
-                '}';
+    public String getImageName() {
+        return imageName;
     }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public String getImageType() {
+        return imageType;
+    }
+
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
+
+
 }
